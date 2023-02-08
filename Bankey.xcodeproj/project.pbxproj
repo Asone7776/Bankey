@@ -13,6 +13,7 @@
 		CE0A56182992F628000F24A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0A56172992F628000F24A0 /* Assets.xcassets */; };
 		CE0A561B2992F628000F24A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0A56192992F628000F24A0 /* LaunchScreen.storyboard */; };
 		CE9187F82992F9E700B4F94E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9187F72992F9E700B4F94E /* LoginView.swift */; };
+		CE9A6A87299428EB007179C9 /* LoadedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6A86299428EB007179C9 /* LoadedButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		CE0A561A2992F628000F24A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE0A561C2992F628000F24A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE9187F72992F9E700B4F94E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		CE9A6A86299428EB007179C9 /* LoadedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadedButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		CE0A560D2992F628000F24A0 /* Bankey */ = {
 			isa = PBXGroup;
 			children = (
+				CE9A6A85299428DB007179C9 /* UIElements */,
 				CE9187F62992F9C000B4F94E /* Login */,
 				CE9187F52992F95B00B4F94E /* Files */,
 				CE0A560E2992F628000F24A0 /* AppDelegate.swift */,
@@ -81,6 +84,14 @@
 				CE9187F72992F9E700B4F94E /* LoginView.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		CE9A6A85299428DB007179C9 /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				CE9A6A86299428EB007179C9 /* LoadedButton.swift */,
+			);
+			path = UIElements;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +168,7 @@
 				CE0A560F2992F628000F24A0 /* AppDelegate.swift in Sources */,
 				CE9187F82992F9E700B4F94E /* LoginView.swift in Sources */,
 				CE0A56112992F628000F24A0 /* SceneDelegate.swift in Sources */,
+				CE9A6A87299428EB007179C9 /* LoadedButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,9 +11,7 @@ class LoginView:UIView {
     lazy var loginTextField:UITextField = {
         let textField = UITextField();
         textField.placeholder = "Username";
-//        textField.translatesAutoresizingMaskIntoConstraints = false;
         textField.delegate = self;
-//        textField.backgroundColor = .blue;
         return textField;
     }();
     
@@ -27,9 +25,7 @@ class LoginView:UIView {
     lazy var passwordTextField:UITextField = {
         let textField = UITextField();
         textField.placeholder = "Password";
-//        textField.translatesAutoresizingMaskIntoConstraints = false;
         textField.delegate = self;
-//        textField.backgroundColor = .green;
         textField.isSecureTextEntry = true;
         return textField;
     }();
@@ -37,7 +33,6 @@ class LoginView:UIView {
         let stack = UIStackView();
         stack.axis = .vertical;
         stack.spacing = 8;
-//        stack.distribution = .fillEqually;
         stack.translatesAutoresizingMaskIntoConstraints = false;
         return stack;
     }();
@@ -84,10 +79,11 @@ extension LoginView: UITextFieldDelegate{
         return true;
     }
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.text != ""{
-            return true;
-        }else{
-            return false;
-        }
+        return true;
+//        if textField.text != ""{
+//            return true;
+//        }else{
+//            return false;
+//        }
     }
 }
