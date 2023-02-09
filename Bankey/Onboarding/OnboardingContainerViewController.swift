@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol OnboardingContainerViewControllerDelegate: AnyObject{
+    func didFinishOnboarding()
+    func didCloseOnboarding()
+}
+
 class OnboardingContainerViewController: UIViewController {
     lazy var closeButton:UIButton = {
         let button = UIButton();
@@ -16,12 +21,20 @@ class OnboardingContainerViewController: UIViewController {
         button.addTarget(self, action: #selector(closePressed), for: .primaryActionTriggered);
         return button;
     }();
+    
+    lazy var doneButton:UIButton = {
+        let button = UIButton();
+        button.configuration = .filled();
+        button.setTitle("Done", for: .normal);
+        button.translatesAutoresizingMaskIntoConstraints = false;
+        button.addTarget(self, action: #selector(donePressed), for: .primaryActionTriggered);
+        return button;
+    }();
+    
     let pageViewController: UIPageViewController
     var pages = [UIViewController]()
-    var currentVC: UIViewController {
-        didSet {
-        }
-    }
+    var currentVC: UIViewController
+    weak var delegate: OnboardingContainerViewControllerDelegate?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -73,17 +86,25 @@ extension OnboardingContainerViewController{
     }
     private func layout(){
         pageViewController.view.addSubview(closeButton);
+        pageViewController.view.addSubview(doneButton);
         NSLayoutConstraint.activate([
             closeButton.topAnchor.constraint(equalToSystemSpacingBelow: pageViewController.view.safeAreaLayoutGuide.topAnchor, multiplier: 1),
-            closeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: pageViewController.view.safeAreaLayoutGuide.leadingAnchor, multiplier: 1)
+            closeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: pageViewController.view.safeAreaLayoutGuide.leadingAnchor, multiplier: 1),
+            
+            doneButton.topAnchor.constraint(equalToSystemSpacingBelow: pageViewController.view.safeAreaLayoutGuide.topAnchor, multiplier: 1),
+            pageViewController.view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: doneButton.trailingAnchor, multiplier: 1),
         ]);
     }
 }
 //MARK: Actions
 extension OnboardingContainerViewController{
     @objc private func closePressed(){
-        print("Close pressed");
+        delegate?.didCloseOnboarding();
     }
+    @objc private func donePressed(){
+        delegate?.didFinishOnboarding();
+    }
+    
 }
 
 // MARK: - UIPageViewControllerDataSource
@@ -105,6 +126,7 @@ extension OnboardingContainerViewController: UIPageViewControllerDataSource {
 
     private func getNextViewController(from viewController: UIViewController) -> UIViewController? {
         guard let index = pages.firstIndex(of: viewController), index + 1 < pages.count else { return nil }
+        print(index);
         currentVC = pages[index + 1]
         return pages[index + 1]
     }

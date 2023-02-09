@@ -16,6 +16,8 @@
 		CE0A561B2992F628000F24A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0A56192992F628000F24A0 /* LaunchScreen.storyboard */; };
 		CE9187F82992F9E700B4F94E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9187F72992F9E700B4F94E /* LoginView.swift */; };
 		CE9A6A87299428EB007179C9 /* LoadedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6A86299428EB007179C9 /* LoadedButton.swift */; };
+		CEB3D97A2995859E001F941F /* DummyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3D9792995859E001F941F /* DummyViewController.swift */; };
+		CEB3D97D299591F0001F941F /* LocalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3D97C299591F0001F941F /* LocalState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		CE0A561C2992F628000F24A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE9187F72992F9E700B4F94E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CE9A6A86299428EB007179C9 /* LoadedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadedButton.swift; sourceTree = "<group>"; };
+		CEB3D9792995859E001F941F /* DummyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyViewController.swift; sourceTree = "<group>"; };
+		CEB3D97C299591F0001F941F /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,7 @@
 		CE0A560D2992F628000F24A0 /* Bankey */ = {
 			isa = PBXGroup;
 			children = (
+				CEB3D97B299591E3001F941F /* Utils */,
 				1A4DD67029950AC800C096CE /* Onboarding */,
 				CE9A6A85299428DB007179C9 /* UIElements */,
 				CE9187F62992F9C000B4F94E /* Login */,
@@ -96,6 +101,7 @@
 			children = (
 				CE0A56122992F628000F24A0 /* LoginViewController.swift */,
 				CE9187F72992F9E700B4F94E /* LoginView.swift */,
+				CEB3D9792995859E001F941F /* DummyViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -106,6 +112,14 @@
 				CE9A6A86299428EB007179C9 /* LoadedButton.swift */,
 			);
 			path = UIElements;
+			sourceTree = "<group>";
+		};
+		CEB3D97B299591E3001F941F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CEB3D97C299591F0001F941F /* LocalState.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,12 +193,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE0A56132992F628000F24A0 /* LoginViewController.swift in Sources */,
+				CEB3D97D299591F0001F941F /* LocalState.swift in Sources */,
 				CE0A560F2992F628000F24A0 /* AppDelegate.swift in Sources */,
 				CE9187F82992F9E700B4F94E /* LoginView.swift in Sources */,
 				CE0A56112992F628000F24A0 /* SceneDelegate.swift in Sources */,
 				1A4DD674299519C000C096CE /* OnboardingViewController.swift in Sources */,
 				1A4DD67229950AE300C096CE /* OnboardingContainerViewController.swift in Sources */,
 				CE9A6A87299428EB007179C9 /* LoadedButton.swift in Sources */,
+				CEB3D97A2995859E001F941F /* DummyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +339,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BQAGCV9J3L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bankey/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -352,6 +369,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BQAGCV9J3L;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Bankey/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

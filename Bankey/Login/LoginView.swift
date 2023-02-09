@@ -11,6 +11,7 @@ class LoginView:UIView {
     lazy var loginTextField:UITextField = {
         let textField = UITextField();
         textField.placeholder = "Username";
+        textField.text = "Kevin";
         textField.delegate = self;
         return textField;
     }();
@@ -25,6 +26,7 @@ class LoginView:UIView {
     lazy var passwordTextField:UITextField = {
         let textField = UITextField();
         textField.placeholder = "Password";
+        textField.text = "Welcome";
         textField.delegate = self;
         textField.isSecureTextEntry = true;
         return textField;
