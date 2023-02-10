@@ -7,6 +7,8 @@
 
 import UIKit
 
+let appColor: UIColor = .systemTeal;
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
@@ -14,6 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var loginViewController = LoginViewController();
     var onBoardingContainerViewController = OnboardingContainerViewController();
     var dummyViewController = DummyViewController();
+    var mainViewController = MainViewController();
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
@@ -23,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         dummyViewController.delegate = self;
         //        window?.rootViewController = dummyViewController;
         //        window?.rootViewController = onBoardingContainerViewController;
-        window?.rootViewController = loginViewController;
+        window?.rootViewController = mainViewController;
         window?.makeKeyAndVisible();
     }
 }
