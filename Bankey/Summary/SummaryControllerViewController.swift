@@ -9,10 +9,10 @@ import UIKit
 
 class SummaryControllerViewController: UIViewController {
     let games = [
-          "Pacman",
-          "Space Invaders",
-          "Space Patrol",
-      ]
+        "Pacman",
+        "Space Invaders",
+        "Space Patrol",
+    ]
     let table: UITableView = {
         let table = UITableView();
         table.translatesAutoresizingMaskIntoConstraints = false;
@@ -20,11 +20,22 @@ class SummaryControllerViewController: UIViewController {
     }();
     override func viewDidLoad() {
         super.viewDidLoad();
-        title = "Summary";
-        navigationController?.navigationBar.prefersLargeTitles = true;
-        style(); 
+        style();
         layout();
         setup();
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated);
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = appColor
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.shadowColor = .clear
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
     }
 }
 
@@ -34,6 +45,9 @@ extension SummaryControllerViewController{
         table.dataSource = self;
         table.register(SummaryTableCell.self, forCellReuseIdentifier: "cellId");
         table.allowsSelection = false;
+        if #available(iOS 15.0, *) {
+            table.sectionHeaderTopPadding = .zero
+        }
     }
     
     private func style(){
@@ -66,14 +80,12 @@ extension SummaryControllerViewController:UITableViewDataSource{
 }
 
 extension SummaryControllerViewController:UITableViewDelegate{
-     func tableView(_ tableView: UITableView, titleForHeaderInSection
-                                section: Int) -> String? {
-       return "Header \(section)"
-    }
 
-    // Create a standard footer that includes the returned text.
-     func tableView(_ tableView: UITableView, titleForFooterInSection
-                                section: Int) -> String? {
-       return "Footer \(section)"
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return SummaryHeader();
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 144;
     }
 }
+

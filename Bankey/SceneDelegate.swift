@@ -21,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene);
+        window?.backgroundColor = .systemBackground
         loginViewController.delegate = self;
         onBoardingContainerViewController.delegate = self;
         dummyViewController.delegate = self;
@@ -28,12 +29,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //        window?.rootViewController = onBoardingContainerViewController;
         window?.rootViewController = mainViewController;
         window?.makeKeyAndVisible();
+        LocalState.hasOnboarded = false;
     }
 }
 extension SceneDelegate:LoginViewControllerDelegate{
     func didLogin() {
         if LocalState.hasOnboarded {
-            setRootViewController(dummyViewController);
+            setRootViewController(mainViewController);
         }else{
             setRootViewController(onBoardingContainerViewController);
         }
@@ -44,7 +46,7 @@ extension SceneDelegate:LoginViewControllerDelegate{
 extension SceneDelegate: OnboardingContainerViewControllerDelegate{
     func didFinishOnboarding() {
         LocalState.hasOnboarded = true;
-        setRootViewController(dummyViewController);
+        setRootViewController(mainViewController);
     }
     func didCloseOnboarding(){
         setRootViewController(loginViewController);
