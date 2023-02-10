@@ -7,7 +7,8 @@
 
 import UIKit
 
-class SummaryHeader: UIView{
+class SummaryHeader: UIView {
+    
     let horizontalStack: UIStackView = {
         let stack = UIStackView();
         stack.axis = .horizontal;
@@ -41,9 +42,9 @@ class SummaryHeader: UIView{
         return label;
     }();
     
-    let nameLabel: UILabel = {
+    var nameLabel: UILabel = {
         let label = UILabel();
-        label.text = "Kevin";
+        label.text = "-";
         label.textColor = .white;
         label.translatesAutoresizingMaskIntoConstraints = false;
         label.font = UIFont.boldSystemFont(ofSize: 18);
@@ -72,7 +73,6 @@ class SummaryHeader: UIView{
         return imageView;
     }();
     
-
     
     override init(frame: CGRect) {
         super.init(frame: frame);
