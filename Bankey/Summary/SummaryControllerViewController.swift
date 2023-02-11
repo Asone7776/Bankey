@@ -54,9 +54,10 @@ extension SummaryControllerViewController{
         locationManager.requestLocation();
     }
     private func setup(){
+        table.showsVerticalScrollIndicator = false;
         table.delegate = self;
         table.dataSource = self;
-        table.register(SummaryTableCell.self, forCellReuseIdentifier: "cellId");
+        table.register(SummaryTableCell.self, forCellReuseIdentifier: SummaryTableCell.reuseId);
         table.allowsSelection = false;
         if #available(iOS 15.0, *) {
             table.sectionHeaderTopPadding = .zero
@@ -83,11 +84,7 @@ extension SummaryControllerViewController:UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! SummaryTableCell;
-        let item = games[indexPath.row];
-        var content = cell.defaultContentConfiguration();
-        content.text = item;
-        cell.contentConfiguration = content;
+        let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableCell.reuseId, for: indexPath) as! SummaryTableCell;
         return cell;
     }
 }
@@ -98,6 +95,9 @@ extension SummaryControllerViewController: UITableViewDelegate{
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 144;
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return SummaryTableCell.cellHeight;
     }
 }
 extension SummaryControllerViewController:CLLocationManagerDelegate {
@@ -118,7 +118,7 @@ extension SummaryControllerViewController:CanShowWeather{
     func didSuccess(weather: WeatherModel) {
         DispatchQueue.main.async {
             self.summaryHeader.image.image = UIImage(systemName: weather.conditionName);
-            self.summaryHeader.nameLabel.text = "\(weather.cityName) - \(weather.temperatureString)ºC";
+            self.summaryHeader.nameLabel.text = "\(weather.cityName): \(weather.temperatureString)ºC";
         }
     }
     

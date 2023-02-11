@@ -105,9 +105,7 @@ extension SummaryHeader{
             horizontalStack.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 2),
             trailingAnchor.constraint(equalToSystemSpacingAfter: horizontalStack.trailingAnchor,multiplier: 2),
             bottomAnchor.constraint(equalToSystemSpacingBelow: horizontalStack.bottomAnchor, multiplier: 2),
-            
             image.widthAnchor.constraint(equalToConstant: 100),
-            image.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
 }

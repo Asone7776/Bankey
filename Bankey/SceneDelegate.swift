@@ -14,7 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     var loginViewController = LoginViewController();
-    var onBoardingContainerViewController = OnboardingContainerViewController();
+    var onBoardingContainerViewController = OnboardingContainerViewController(nibName: nil, bundle: nil);
     var dummyViewController = DummyViewController();
     var mainViewController = MainViewController();
     
@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         onBoardingContainerViewController.delegate = self;
         dummyViewController.delegate = self;
         //        window?.rootViewController = dummyViewController;
-        //        window?.rootViewController = onBoardingContainerViewController;
+//                window?.rootViewController = onBoardingContainerViewController;
         window?.rootViewController = mainViewController;
         window?.makeKeyAndVisible();
         LocalState.hasOnboarded = false;
