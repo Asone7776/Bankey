@@ -8,7 +8,7 @@
 import UIKit
 
 class SummaryTableCell: UITableViewCell{
-    
+    var viewModel: SummaryModel? = nil
     static let cellHeight: CGFloat = 100;
     static let reuseId = "summaryCell";
     
@@ -39,7 +39,7 @@ class SummaryTableCell: UITableViewCell{
         let stack = UIStackView();
         stack.translatesAutoresizingMaskIntoConstraints = false;
         stack.axis = .vertical;
-//        stack.spacing = 20;
+        //        stack.spacing = 20;
         stack.distribution = .fillEqually
         return stack;
     }();
@@ -56,7 +56,6 @@ class SummaryTableCell: UITableViewCell{
         let label = UILabel();
         label.translatesAutoresizingMaskIntoConstraints = false;
         label.font = UIFont.systemFont(ofSize: 14);
-        label.text = "17$";
         return label;
     }();
     
@@ -69,7 +68,7 @@ class SummaryTableCell: UITableViewCell{
         imageView.tintColor = appColor;
         return imageView;
     }();
-
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier);
@@ -84,7 +83,7 @@ class SummaryTableCell: UITableViewCell{
 }
 extension SummaryTableCell{
     private func style(){
-        
+        amountLabel.attributedText = makeFormattedBalance(dollars: "929,466", cents: "23")
     }
     
     private func setup(){
@@ -118,5 +117,41 @@ extension SummaryTableCell{
             chevronImage.leadingAnchor.constraint(equalTo: balanceStackView.trailingAnchor, constant: 8),
             bottomAnchor.constraint(equalToSystemSpacingBelow: balanceStackView.bottomAnchor, multiplier: 1)
         ]);
+    }
+    
+    private func makeFormattedBalance(dollars: String, cents: String) -> NSMutableAttributedString {
+        let dollarSignAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .callout), .baselineOffset: 8]
+        let dollarAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .title1)]
+        let centAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.preferredFont(forTextStyle: .footnote), .baselineOffset: 8]
+        
+        let rootString = NSMutableAttributedString(string: "$", attributes: dollarSignAttributes)
+        let dollarString = NSAttributedString(string: dollars, attributes: dollarAttributes)
+        let centString = NSAttributedString(string: cents, attributes: centAttributes)
+        
+        rootString.append(dollarString)
+        rootString.append(centString)
+        
+        return rootString
+    }
+}
+
+extension SummaryTableCell{
+    func configure(with vm: SummaryModel){
+        typeLabel.text = vm.accountType.rawValue;
+        nameLabel.text = vm.accountName;
+        switch vm.accountType{
+            case .Banking:
+            underlineView.backgroundColor = appColor;
+            currentBalanceLabel.text = "Current balance";
+                break;
+            case .CreditCard:
+            underlineView.backgroundColor = .systemOrange;
+            currentBalanceLabel.text = "Current balance";
+                break;
+            case .Investment:
+            underlineView.backgroundColor = .systemPurple;
+            currentBalanceLabel.text = "Value";
+                break;
+        }
     }
 }

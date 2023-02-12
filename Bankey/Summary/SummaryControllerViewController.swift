@@ -12,11 +12,7 @@ class SummaryControllerViewController: UIViewController {
     var summaryHeader = SummaryHeader();
     var brain = WeatherBrain();
     let locationManager = CLLocationManager();
-    let games = [
-        "Pacman",
-        "Space Invaders",
-        "Space Patrol",
-    ]
+    var accounts = [SummaryModel]();
     let table: UITableView = {
         let table = UITableView();
         table.translatesAutoresizingMaskIntoConstraints = false;
@@ -28,6 +24,7 @@ class SummaryControllerViewController: UIViewController {
         layout();
         setup();
         setupLocation();
+        fetchData();
         brain.delegate = self;
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -77,14 +74,29 @@ extension SummaryControllerViewController{
             table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ]);
     }
+    private func fetchData() {
+        let savings = SummaryModel(accountType: .Banking,
+                                                    accountName: "Basic Savings")
+        let visa = SummaryModel(accountType: .CreditCard,
+                                                       accountName: "Visa Avion Card")
+        let investment = SummaryModel(accountType: .Investment,
+                                                       accountName: "Tax-Free Saver")
+
+        accounts.append(savings)
+        accounts.append(visa)
+        accounts.append(investment)
+    }
 }
 extension SummaryControllerViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return games.count;
+        return accounts.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableCell.reuseId, for: indexPath) as! SummaryTableCell;
+        guard !accounts.isEmpty else {return UITableViewCell()};
+        let item = accounts[indexPath.row];
+        cell.configure(with: item);
         return cell;
     }
 }
