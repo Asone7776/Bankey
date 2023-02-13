@@ -27,9 +27,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         dummyViewController.delegate = self;
         //        window?.rootViewController = dummyViewController;
 //                window?.rootViewController = onBoardingContainerViewController;
-        window?.rootViewController = mainViewController;
+        window?.rootViewController = loginViewController;
         window?.makeKeyAndVisible();
         LocalState.hasOnboarded = false;
+        registerForNotification();
     }
 }
 extension SceneDelegate:LoginViewControllerDelegate{
@@ -39,7 +40,6 @@ extension SceneDelegate:LoginViewControllerDelegate{
         }else{
             setRootViewController(onBoardingContainerViewController);
         }
-        
     }
 }
 
@@ -54,11 +54,14 @@ extension SceneDelegate: OnboardingContainerViewControllerDelegate{
 }
 
 extension SceneDelegate: LogoutDelegate{
-    func didLogout() {
+   @objc func didLogout() {
         setRootViewController(loginViewController);
     }
 }
 extension SceneDelegate {
+    func registerForNotification(){
+        NotificationCenter.default.addObserver(self, selector: #selector(didLogout), name: .logout, object: nil);
+    }
     func setRootViewController(_ vc: UIViewController, animated: Bool = true) {
         guard animated, let window = self.window else {
             self.window?.rootViewController = vc

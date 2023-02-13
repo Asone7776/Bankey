@@ -27,7 +27,7 @@ class SummaryHeader: UIView {
     let bankeyLabel: UILabel = {
         let label = UILabel();
         label.text = "Bankey";
-        label.textColor = .white;
+        label.textColor = .label;
         label.font = UIFont.boldSystemFont(ofSize: 25);
         label.translatesAutoresizingMaskIntoConstraints = false;
         return label;
@@ -36,7 +36,7 @@ class SummaryHeader: UIView {
     let greetingsLabel: UILabel = {
         let label = UILabel();
         label.text = "Hello!";
-        label.textColor = .white;
+        label.textColor = .label;
         label.font = UIFont.boldSystemFont(ofSize: 20);
         label.translatesAutoresizingMaskIntoConstraints = false;
         return label;
@@ -45,7 +45,7 @@ class SummaryHeader: UIView {
     var nameLabel: UILabel = {
         let label = UILabel();
         label.text = "-";
-        label.textColor = .white;
+        label.textColor = .label;
         label.translatesAutoresizingMaskIntoConstraints = false;
         label.font = UIFont.boldSystemFont(ofSize: 18);
         return label;
@@ -57,7 +57,7 @@ class SummaryHeader: UIView {
         let df = DateFormatter();
         df.dateFormat = "dd-MM-yyyy";
         label.text = df.string(from: date);
-        label.textColor = .white;
+        label.textColor = .label;
         label.translatesAutoresizingMaskIntoConstraints = false;
         label.font = UIFont.boldSystemFont(ofSize: 16 );
         return label;

@@ -29,6 +29,7 @@ class LoginView:UIView {
         textField.text = "Welcome";
         textField.delegate = self;
         textField.isSecureTextEntry = true;
+        textField.enablePasswordToggle();
         return textField;
     }();
     let stackView: UIStackView = {

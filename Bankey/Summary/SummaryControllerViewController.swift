@@ -9,6 +9,7 @@ import UIKit
 import CoreLocation
 
 class SummaryControllerViewController: UIViewController {
+    var confirm = ConfirmAlert();
     var summaryHeader = SummaryHeader();
     var brain = WeatherBrain();
     let locationManager = CLLocationManager();
@@ -18,15 +19,23 @@ class SummaryControllerViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false;
         return table;
     }();
+    
+    lazy var logoutButton:UIBarButtonItem = {
+        let button = UIBarButtonItem(title: nil, image: UIImage(systemName: "rectangle.portrait.and.arrow.right.fill"), target: self, action: #selector(logoutPressed));
+        button.tintColor = .label;
+        return button;
+    }();
     override func viewDidLoad() {
         super.viewDidLoad();
-        style();
+        setupNavigationBar();
         layout();
         setup();
         setupLocation();
         fetchData();
         brain.delegate = self;
+        confirm.delegate = self;
     }
+ 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         
@@ -42,8 +51,14 @@ class SummaryControllerViewController: UIViewController {
     }
 }
 
-
-
+//MARK: Actions
+extension SummaryControllerViewController{
+    @objc func logoutPressed (){
+        confirm.presentAlert(title: "Are you sure for logout?", message: nil) {
+            NotificationCenter.default.post(name: .logout, object: nil);
+        }
+    }
+}
 extension SummaryControllerViewController{
     private func setupLocation(){
         locationManager.delegate = self;
@@ -62,8 +77,8 @@ extension SummaryControllerViewController{
         }
     }
     
-    private func style(){
-        
+    private func setupNavigationBar(){
+        navigationItem.rightBarButtonItem = logoutButton;
     }
     
     private func layout(){
@@ -154,3 +169,12 @@ extension SummaryControllerViewController:CanShowWeather{
         print(message);
     }
 }
+extension SummaryControllerViewController:ConfirmAlertDelegate{
+    func showConfirmDialog(alert: UIAlertController){
+        present(alert,animated: true);
+    }
+}
+
+    
+        
+    

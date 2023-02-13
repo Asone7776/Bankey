@@ -29,6 +29,9 @@
 		CEB3D97D299591F0001F941F /* LocalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3D97C299591F0001F941F /* LocalState.swift */; };
 		CEC215F6299A9CBB00975445 /* Decimal+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC215F5299A9CBB00975445 /* Decimal+Utils.swift */; };
 		CEC215F8299A9D1900975445 /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC215F7299A9D1900975445 /* CurrencyFormatter.swift */; };
+		CEC215FA299ACE2800975445 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC215F9299ACE2800975445 /* Alerts.swift */; };
+		CEC215FC299AE8B500975445 /* NSNotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC215FB299AE8B500975445 /* NSNotificationName.swift */; };
+		CEC215FE299AED1400975445 /* UITextFieldSecureToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC215FD299AED1400975445 /* UITextFieldSecureToggle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,9 @@
 		CEB3D97C299591F0001F941F /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
 		CEC215F5299A9CBB00975445 /* Decimal+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Utils.swift"; sourceTree = "<group>"; };
 		CEC215F7299A9D1900975445 /* CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
+		CEC215F9299ACE2800975445 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		CEC215FB299AE8B500975445 /* NSNotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotificationName.swift; sourceTree = "<group>"; };
+		CEC215FD299AED1400975445 /* UITextFieldSecureToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldSecureToggle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +205,9 @@
 				1AF2AE7629964FFE00DE8010 /* UIVIewController+Utils.swift */,
 				CEC215F5299A9CBB00975445 /* Decimal+Utils.swift */,
 				CEC215F7299A9D1900975445 /* CurrencyFormatter.swift */,
+				CEC215F9299ACE2800975445 /* Alerts.swift */,
+				CEC215FB299AE8B500975445 /* NSNotificationName.swift */,
+				CEC215FD299AED1400975445 /* UITextFieldSecureToggle.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -281,6 +290,7 @@
 				1AF2AE79299650C700DE8010 /* MainViewController.swift in Sources */,
 				CE0A56132992F628000F24A0 /* LoginViewController.swift in Sources */,
 				CEB3D97D299591F0001F941F /* LocalState.swift in Sources */,
+				CEC215FE299AED1400975445 /* UITextFieldSecureToggle.swift in Sources */,
 				CE0A560F2992F628000F24A0 /* AppDelegate.swift in Sources */,
 				CEC215F8299A9D1900975445 /* CurrencyFormatter.swift in Sources */,
 				CE4A91F129996DFE00939BCB /* SummaryModel.swift in Sources */,
@@ -292,6 +302,8 @@
 				CE7F2FD72996EA8500A64776 /* WeatherBrain.swift in Sources */,
 				CE7F2FDB2996EAF200A64776 /* WeatherModel.swift in Sources */,
 				CE9A6A87299428EB007179C9 /* LoadedButton.swift in Sources */,
+				CEC215FA299ACE2800975445 /* Alerts.swift in Sources */,
+				CEC215FC299AE8B500975445 /* NSNotificationName.swift in Sources */,
 				CEB3D97A2995859E001F941F /* DummyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

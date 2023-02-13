@@ -34,6 +34,7 @@ class SummaryTableCell: UITableViewCell{
         label.numberOfLines = 0;
         label.lineBreakMode = .byWordWrapping;
         label.text = "name text";
+        label.adjustsFontSizeToFitWidth = true
         return label;
     }();
     
@@ -41,7 +42,6 @@ class SummaryTableCell: UITableViewCell{
         let stack = UIStackView();
         stack.translatesAutoresizingMaskIntoConstraints = false;
         stack.axis = .vertical;
-        //        stack.spacing = 20;
         stack.distribution = .fillEqually
         return stack;
     }();
@@ -51,6 +51,7 @@ class SummaryTableCell: UITableViewCell{
         label.translatesAutoresizingMaskIntoConstraints = false;
         label.font = UIFont.systemFont(ofSize: 14);
         label.text = "Current balance";
+        label.adjustsFontSizeToFitWidth = true
         return label;
     }();
     
@@ -145,7 +146,6 @@ extension SummaryTableCell{
         typeLabel.text = vm.accountType.rawValue;
         nameLabel.text = vm.accountName;
         amountLabel.attributedText = vm.balanceAsAttributedString;
-//        print(vm.balanceAsAttributedString);
         switch vm.accountType{
             case .Banking:
             underlineView.backgroundColor = appColor;
