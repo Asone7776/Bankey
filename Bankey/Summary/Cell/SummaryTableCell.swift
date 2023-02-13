@@ -31,6 +31,8 @@ class SummaryTableCell: UITableViewCell{
         let label = UILabel();
         label.translatesAutoresizingMaskIntoConstraints = false;
         label.font = UIFont.systemFont(ofSize: 16);
+        label.numberOfLines = 0;
+        label.lineBreakMode = .byWordWrapping;
         label.text = "name text";
         return label;
     }();
@@ -54,6 +56,7 @@ class SummaryTableCell: UITableViewCell{
     
     let amountLabel: UILabel = {
         let label = UILabel();
+        label.numberOfLines = 0;
         label.translatesAutoresizingMaskIntoConstraints = false;
         label.font = UIFont.systemFont(ofSize: 14);
         return label;
@@ -114,6 +117,8 @@ extension SummaryTableCell{
             chevronImage.widthAnchor.constraint(equalToConstant: 32),
             
             balanceStackView.topAnchor.constraint(equalToSystemSpacingBelow:topAnchor, multiplier: 1),
+            balanceStackView.leadingAnchor.constraint(equalToSystemSpacingAfter:nameLabel.trailingAnchor, multiplier: 1),
+            
             chevronImage.leadingAnchor.constraint(equalTo: balanceStackView.trailingAnchor, constant: 8),
             bottomAnchor.constraint(equalToSystemSpacingBelow: balanceStackView.bottomAnchor, multiplier: 1)
         ]);
@@ -139,6 +144,8 @@ extension SummaryTableCell{
     func configure(with vm: SummaryModel){
         typeLabel.text = vm.accountType.rawValue;
         nameLabel.text = vm.accountName;
+        amountLabel.attributedText = vm.balanceAsAttributedString;
+//        print(vm.balanceAsAttributedString);
         switch vm.accountType{
             case .Banking:
             underlineView.backgroundColor = appColor;

@@ -14,7 +14,7 @@ class SummaryControllerViewController: UIViewController {
     let locationManager = CLLocationManager();
     var accounts = [SummaryModel]();
     let table: UITableView = {
-        let table = UITableView();
+        let table = UITableView(frame: UIScreen.main.bounds, style: .grouped);
         table.translatesAutoresizingMaskIntoConstraints = false;
         return table;
     }();
@@ -51,6 +51,7 @@ extension SummaryControllerViewController{
         locationManager.requestLocation();
     }
     private func setup(){
+        table.backgroundColor = appColor;
         table.showsVerticalScrollIndicator = false;
         table.delegate = self;
         table.dataSource = self;
@@ -76,15 +77,30 @@ extension SummaryControllerViewController{
     }
     private func fetchData() {
         let savings = SummaryModel(accountType: .Banking,
-                                                    accountName: "Basic Savings")
+                                                            accountName: "Basic Savings",
+                                                        balance: 929466.23)
+        let chequing = SummaryModel(accountType: .Banking,
+                                                    accountName: "No-Fee All-In Chequing",
+                                                    balance: 17562.44)
         let visa = SummaryModel(accountType: .CreditCard,
-                                                       accountName: "Visa Avion Card")
-        let investment = SummaryModel(accountType: .Investment,
-                                                       accountName: "Tax-Free Saver")
+                                                       accountName: "Visa Avion Card",
+                                                       balance: 412.83)
+        let masterCard = SummaryModel(accountType: .CreditCard,
+                                                       accountName: "Student Mastercard",
+                                                       balance: 50.83)
+        let investment1 = SummaryModel(accountType: .Investment,
+                                                       accountName: "Tax-Free Saver",
+                                                       balance: 2000.00)
+        let investment2 = SummaryModel(accountType: .Investment,
+                                                       accountName: "Growth Fund",
+                                                       balance: 15000.00)
 
         accounts.append(savings)
+        accounts.append(chequing)
         accounts.append(visa)
-        accounts.append(investment)
+        accounts.append(masterCard)
+        accounts.append(investment1)
+        accounts.append(investment2)
     }
 }
 extension SummaryControllerViewController:UITableViewDataSource{
