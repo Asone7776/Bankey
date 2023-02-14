@@ -33,6 +33,7 @@ class LoginViewController: UIViewController {
         title.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         title.adjustsFontForContentSizeCategory = true
         title.text = "Bankey"
+        title.alpha = 0;
         return title;
     }();
     
@@ -67,12 +68,23 @@ class LoginViewController: UIViewController {
         button.addTarget(self, action: #selector(signInPressed), for: .touchUpInside);
         return button;
     }();
+    //    Animation
+    let leadingEdgeOnScreen: CGFloat = 16;
+    let leadingEdgeOffScreen: CGFloat = -1000;
+    
+    var titleLeadingAnchor:NSLayoutConstraint?;
+    var subTitleLeadingAnchor:NSLayoutConstraint?;
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground;
         style();
         layout();
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        animateLabels();
+    }
+    
 }
 //MARK: Actions
 extension LoginViewController{
@@ -107,6 +119,7 @@ extension LoginViewController{
 }
 //MARK: Style and Layout
 extension LoginViewController{
+    
     func style(){
         
     }
@@ -120,9 +133,9 @@ extension LoginViewController{
         NSLayoutConstraint.activate([
             loginView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             loginView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 1),
-//            loginView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            //            loginView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: loginView.trailingAnchor, multiplier: 1),
-//            loginView.heightAnchor.constraint(equalToConstant: 200)
+            //            loginView.heightAnchor.constraint(equalToConstant: 200)
             signInButton.topAnchor.constraint(equalToSystemSpacingBelow: loginView.bottomAnchor, multiplier: 2),
             signInButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 1),
             view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: signInButton.trailingAnchor, multiplier: 1),
@@ -132,14 +145,31 @@ extension LoginViewController{
             view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: errorLabel.trailingAnchor, multiplier: 1),
             
             loginView.topAnchor.constraint(equalToSystemSpacingBelow: subTitleLabel.bottomAnchor, multiplier: 3),
-            subTitleLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
             subTitleLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor),
-            
-            subTitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 3),
             titleLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            subTitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 3),
             titleLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor),
-        ])
+        ]);
+        //animate constants
+        subTitleLeadingAnchor =  subTitleLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor,constant: leadingEdgeOffScreen);
+        subTitleLeadingAnchor?.isActive = true;
     }
 }
-
-
+//MARK: Animation
+extension LoginViewController{
+    func animateLabels() {
+        let duration:Double = 0.8;
+        
+        let subLabelAnimator = UIViewPropertyAnimator(duration: duration, curve: .easeIn) {
+            self.subTitleLeadingAnchor?.constant = self.leadingEdgeOnScreen;
+            self.view.layoutIfNeeded();
+        };
+        subLabelAnimator.startAnimation();
+        
+        let animator3 = UIViewPropertyAnimator(duration: duration * 2, curve: .easeInOut) {
+            self.titleLabel.alpha = 1;
+            self.view.layoutIfNeeded();
+        }
+        animator3.startAnimation(afterDelay: 0.5);
+    }
+}
