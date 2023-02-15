@@ -15,7 +15,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var loginViewController = LoginViewController();
     var onBoardingContainerViewController = OnboardingContainerViewController(nibName: nil, bundle: nil);
-    var dummyViewController = DummyViewController();
     var mainViewController = MainViewController();
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -24,8 +23,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .systemBackground
         loginViewController.delegate = self;
         onBoardingContainerViewController.delegate = self;
-        dummyViewController.delegate = self;
-        //        window?.rootViewController = dummyViewController;
 //                window?.rootViewController = onBoardingContainerViewController;
         window?.rootViewController = loginViewController;
         window?.makeKeyAndVisible();

@@ -11,7 +11,7 @@
 		1A4DD674299519C000C096CE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4DD673299519C000C096CE /* OnboardingViewController.swift */; };
 		1AF2AE7729964FFE00DE8010 /* UIVIewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF2AE7629964FFE00DE8010 /* UIVIewController+Utils.swift */; };
 		1AF2AE79299650C700DE8010 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF2AE78299650C700DE8010 /* MainViewController.swift */; };
-		1AF2AE7C29966EFF00DE8010 /* SummaryControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF2AE7B29966EFF00DE8010 /* SummaryControllerViewController.swift */; };
+		1AF2AE7C29966EFF00DE8010 /* SummaryContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF2AE7B29966EFF00DE8010 /* SummaryContainerViewController.swift */; };
 		1AF2AE7E2996726100DE8010 /* SummaryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF2AE7D2996726100DE8010 /* SummaryTableCell.swift */; };
 		CE0A560F2992F628000F24A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A560E2992F628000F24A0 /* AppDelegate.swift */; };
 		CE0A56112992F628000F24A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0A56102992F628000F24A0 /* SceneDelegate.swift */; };
@@ -25,7 +25,6 @@
 		CE7F2FDB2996EAF200A64776 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F2FDA2996EAF200A64776 /* WeatherModel.swift */; };
 		CE9187F82992F9E700B4F94E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9187F72992F9E700B4F94E /* LoginView.swift */; };
 		CE9A6A87299428EB007179C9 /* LoadedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6A86299428EB007179C9 /* LoadedButton.swift */; };
-		CEB3D97A2995859E001F941F /* DummyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3D9792995859E001F941F /* DummyViewController.swift */; };
 		CEB3D97D299591F0001F941F /* LocalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB3D97C299591F0001F941F /* LocalState.swift */; };
 		CEC215F6299A9CBB00975445 /* Decimal+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC215F5299A9CBB00975445 /* Decimal+Utils.swift */; };
 		CEC215F8299A9D1900975445 /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC215F7299A9D1900975445 /* CurrencyFormatter.swift */; };
@@ -39,7 +38,7 @@
 		1A4DD673299519C000C096CE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		1AF2AE7629964FFE00DE8010 /* UIVIewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+Utils.swift"; sourceTree = "<group>"; };
 		1AF2AE78299650C700DE8010 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		1AF2AE7B29966EFF00DE8010 /* SummaryControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryControllerViewController.swift; sourceTree = "<group>"; };
+		1AF2AE7B29966EFF00DE8010 /* SummaryContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContainerViewController.swift; sourceTree = "<group>"; };
 		1AF2AE7D2996726100DE8010 /* SummaryTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableCell.swift; sourceTree = "<group>"; };
 		CE0A560B2992F628000F24A0 /* Bankey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bankey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE0A560E2992F628000F24A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +54,6 @@
 		CE7F2FDA2996EAF200A64776 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		CE9187F72992F9E700B4F94E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		CE9A6A86299428EB007179C9 /* LoadedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadedButton.swift; sourceTree = "<group>"; };
-		CEB3D9792995859E001F941F /* DummyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyViewController.swift; sourceTree = "<group>"; };
 		CEB3D97C299591F0001F941F /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
 		CEC215F5299A9CBB00975445 /* Decimal+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Utils.swift"; sourceTree = "<group>"; };
 		CEC215F7299A9D1900975445 /* CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
@@ -89,7 +87,7 @@
 			children = (
 				CE0D64C1299818BB00C68BEC /* Cell */,
 				CE0D64C0299818B000C68BEC /* Header */,
-				1AF2AE7B29966EFF00DE8010 /* SummaryControllerViewController.swift */,
+				1AF2AE7B29966EFF00DE8010 /* SummaryContainerViewController.swift */,
 			);
 			path = Summary;
 			sourceTree = "<group>";
@@ -185,7 +183,6 @@
 			children = (
 				CE0A56122992F628000F24A0 /* LoginViewController.swift */,
 				CE9187F72992F9E700B4F94E /* LoginView.swift */,
-				CEB3D9792995859E001F941F /* DummyViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -284,7 +281,7 @@
 			files = (
 				1AF2AE7729964FFE00DE8010 /* UIVIewController+Utils.swift in Sources */,
 				1AF2AE7E2996726100DE8010 /* SummaryTableCell.swift in Sources */,
-				1AF2AE7C29966EFF00DE8010 /* SummaryControllerViewController.swift in Sources */,
+				1AF2AE7C29966EFF00DE8010 /* SummaryContainerViewController.swift in Sources */,
 				CE7F2FD42996C2CA00A64776 /* SummaryHeader.swift in Sources */,
 				CEC215F6299A9CBB00975445 /* Decimal+Utils.swift in Sources */,
 				1AF2AE79299650C700DE8010 /* MainViewController.swift in Sources */,
@@ -304,7 +301,6 @@
 				CE9A6A87299428EB007179C9 /* LoadedButton.swift in Sources */,
 				CEC215FA299ACE2800975445 /* Alerts.swift in Sources */,
 				CEC215FC299AE8B500975445 /* NSNotificationName.swift in Sources */,
-				CEB3D97A2995859E001F941F /* DummyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -101,20 +101,21 @@ extension LoginViewController{
             return;
         }
         if username.isEmpty || password.isEmpty{
-            configureView(withMessage: "Username / Password cannot be blank");
+            configureErrorView(withMessage: "Username / Password cannot be blank");
             return;
         }
         if username == "Kevin" && password == "Welcome"{
             signInButton.isLoading = false;
             delegate?.didLogin();
         }else{
-            configureView(withMessage: "Incorrect Username / Password");
+            configureErrorView(withMessage: "Incorrect Username / Password");
         }
     }
-    private func configureView(withMessage message:String){
+    private func configureErrorView(withMessage message:String){
         errorLabel.isHidden = false;
         errorLabel.text = message;
         signInButton.isLoading = false;
+        shakeButton();
     }
 }
 //MARK: Style and Layout
@@ -171,5 +172,15 @@ extension LoginViewController{
             self.view.layoutIfNeeded();
         }
         animator3.startAnimation(afterDelay: 0.5);
+    }
+    
+    func shakeButton() {
+        let animation = CAKeyframeAnimation(keyPath: "position.x");
+        animation.keyPath = "position.x";
+        animation.values = [0,10,-10,10,0];
+        animation.keyTimes = [0.2,0.4,0.6,0.8,1];
+        animation.duration = 0.4;
+        animation.isAdditive = true;
+        signInButton.layer.add(animation, forKey: "shake");
     }
 }

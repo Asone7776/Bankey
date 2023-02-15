@@ -8,7 +8,7 @@
 import UIKit
 import CoreLocation
 
-class SummaryControllerViewController: UIViewController {
+class SummaryContainerViewController: UIViewController {
     var confirm = ConfirmAlert();
     var summaryHeader = SummaryHeader();
     var brain = WeatherBrain();
@@ -52,14 +52,14 @@ class SummaryControllerViewController: UIViewController {
 }
 
 //MARK: Actions
-extension SummaryControllerViewController{
+extension SummaryContainerViewController{
     @objc func logoutPressed (){
         confirm.presentAlert(title: "Are you sure for logout?", message: nil) {
             NotificationCenter.default.post(name: .logout, object: nil);
         }
     }
 }
-extension SummaryControllerViewController{
+extension SummaryContainerViewController{
     private func setupLocation(){
         locationManager.delegate = self;
         locationManager.requestWhenInUseAuthorization();
@@ -118,7 +118,7 @@ extension SummaryControllerViewController{
         accounts.append(investment2)
     }
 }
-extension SummaryControllerViewController:UITableViewDataSource{
+extension SummaryContainerViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return accounts.count;
     }
@@ -132,7 +132,7 @@ extension SummaryControllerViewController:UITableViewDataSource{
     }
 }
 
-extension SummaryControllerViewController: UITableViewDelegate{
+extension SummaryContainerViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return summaryHeader;
     }
@@ -143,7 +143,7 @@ extension SummaryControllerViewController: UITableViewDelegate{
         return SummaryTableCell.cellHeight;
     }
 }
-extension SummaryControllerViewController:CLLocationManagerDelegate {
+extension SummaryContainerViewController:CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationManager.stopUpdatingLocation();
     }
@@ -157,7 +157,7 @@ extension SummaryControllerViewController:CLLocationManagerDelegate {
         }
     }
 }
-extension SummaryControllerViewController:CanShowWeather{
+extension SummaryContainerViewController:CanShowWeather{
     func didSuccess(weather: WeatherModel) {
         DispatchQueue.main.async {
             self.summaryHeader.image.image = UIImage(systemName: weather.conditionName);
@@ -169,7 +169,7 @@ extension SummaryControllerViewController:CanShowWeather{
         print(message);
     }
 }
-extension SummaryControllerViewController:ConfirmAlertDelegate{
+extension SummaryContainerViewController:ConfirmAlertDelegate{
     func showConfirmDialog(alert: UIAlertController){
         present(alert,animated: true);
     }
