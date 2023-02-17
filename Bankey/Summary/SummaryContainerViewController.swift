@@ -13,7 +13,7 @@ class SummaryContainerViewController: UIViewController {
     var summaryHeader = SummaryHeader();
     var brain = WeatherBrain();
     let locationManager = CLLocationManager();
-    var accounts = [SummaryModel]();
+    var accountCellViewModels = [SummaryModel]();
     let table: UITableView = {
         let table = UITableView(frame: UIScreen.main.bounds, style: .grouped);
         table.translatesAutoresizingMaskIntoConstraints = false;
@@ -34,6 +34,7 @@ class SummaryContainerViewController: UIViewController {
         fetchData();
         brain.delegate = self;
         confirm.delegate = self;
+        fetchDataAndLoadViews();
     }
  
     override func viewWillAppear(_ animated: Bool) {
@@ -110,23 +111,23 @@ extension SummaryContainerViewController{
                                                        accountName: "Growth Fund",
                                                        balance: 15000.00)
 
-        accounts.append(savings)
-        accounts.append(chequing)
-        accounts.append(visa)
-        accounts.append(masterCard)
-        accounts.append(investment1)
-        accounts.append(investment2)
+        accountCellViewModels.append(savings)
+        accountCellViewModels.append(chequing)
+        accountCellViewModels.append(visa)
+        accountCellViewModels.append(masterCard)
+        accountCellViewModels.append(investment1)
+        accountCellViewModels.append(investment2)
     }
 }
 extension SummaryContainerViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return accounts.count;
+        return accountCellViewModels.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableCell.reuseId, for: indexPath) as! SummaryTableCell;
-        guard !accounts.isEmpty else {return UITableViewCell()};
-        let item = accounts[indexPath.row];
+        guard !accountCellViewModels.isEmpty else {return UITableViewCell()};
+        let item = accountCellViewModels[indexPath.row];
         cell.configure(with: item);
         return cell;
     }
@@ -169,6 +170,22 @@ extension SummaryContainerViewController:CanShowWeather{
         print(message);
     }
 }
+//MARK: Get profile
+extension SummaryContainerViewController{
+    private func fetchDataAndLoadViews() {
+        fetchProfile(forUserId: "1") { result in
+            switch result {
+            case .success(let profile):
+                DispatchQueue.main.async {
+                    self.summaryHeader.greetingsLabel.text = profile.greeting;
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+}
+
 extension SummaryContainerViewController:ConfirmAlertDelegate{
     func showConfirmDialog(alert: UIAlertController){
         present(alert,animated: true);

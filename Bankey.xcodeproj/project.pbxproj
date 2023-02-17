@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A4DD67229950AE300C096CE /* OnboardingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4DD67129950AE300C096CE /* OnboardingContainerViewController.swift */; };
 		1A4DD674299519C000C096CE /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4DD673299519C000C096CE /* OnboardingViewController.swift */; };
+		1AC1501C299F8AAD006DD719 /* SummaryNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1501B299F8AAD006DD719 /* SummaryNetworking.swift */; };
 		1AF2AE7729964FFE00DE8010 /* UIVIewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF2AE7629964FFE00DE8010 /* UIVIewController+Utils.swift */; };
 		1AF2AE79299650C700DE8010 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF2AE78299650C700DE8010 /* MainViewController.swift */; };
 		1AF2AE7C29966EFF00DE8010 /* SummaryContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF2AE7B29966EFF00DE8010 /* SummaryContainerViewController.swift */; };
@@ -36,6 +37,7 @@
 /* Begin PBXFileReference section */
 		1A4DD67129950AE300C096CE /* OnboardingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerViewController.swift; sourceTree = "<group>"; };
 		1A4DD673299519C000C096CE /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		1AC1501B299F8AAD006DD719 /* SummaryNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryNetworking.swift; sourceTree = "<group>"; };
 		1AF2AE7629964FFE00DE8010 /* UIVIewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIewController+Utils.swift"; sourceTree = "<group>"; };
 		1AF2AE78299650C700DE8010 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1AF2AE7B29966EFF00DE8010 /* SummaryContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryContainerViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				CE0D64C1299818BB00C68BEC /* Cell */,
 				CE0D64C0299818B000C68BEC /* Header */,
 				1AF2AE7B29966EFF00DE8010 /* SummaryContainerViewController.swift */,
+				1AC1501B299F8AAD006DD719 /* SummaryNetworking.swift */,
 			);
 			path = Summary;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				CEC215FE299AED1400975445 /* UITextFieldSecureToggle.swift in Sources */,
 				CE0A560F2992F628000F24A0 /* AppDelegate.swift in Sources */,
 				CEC215F8299A9D1900975445 /* CurrencyFormatter.swift in Sources */,
+				1AC1501C299F8AAD006DD719 /* SummaryNetworking.swift in Sources */,
 				CE4A91F129996DFE00939BCB /* SummaryModel.swift in Sources */,
 				CE7F2FD92996EAD300A64776 /* Weather.swift in Sources */,
 				CE9187F82992F9E700B4F94E /* LoginView.swift in Sources */,

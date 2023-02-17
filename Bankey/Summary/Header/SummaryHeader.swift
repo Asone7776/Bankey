@@ -9,6 +9,8 @@ import UIKit
 
 class SummaryHeader: UIView {
     
+    
+    
     let horizontalStack: UIStackView = {
         let stack = UIStackView();
         stack.axis = .horizontal;
@@ -33,7 +35,7 @@ class SummaryHeader: UIView {
         return label;
     }();
     
-    let greetingsLabel: UILabel = {
+    var greetingsLabel: UILabel = {
         let label = UILabel();
         label.text = "Hello!";
         label.textColor = .label;
