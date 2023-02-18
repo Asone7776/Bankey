@@ -14,6 +14,7 @@ class SummaryContainerViewController: UIViewController {
     var brain = WeatherBrain();
     let locationManager = CLLocationManager();
     var accounts = [SummaryModel]();
+    let refreshControl = UIRefreshControl();
     let table: UITableView = {
         let table = UITableView(frame: UIScreen.main.bounds, style: .grouped);
         table.translatesAutoresizingMaskIntoConstraints = false;
@@ -31,13 +32,13 @@ class SummaryContainerViewController: UIViewController {
         confirm.delegate = self;
         layout();
         setup();
+        setupRefreshControl();
         setupLocation();
         fetchData();
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
-        
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = appColor
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -57,8 +58,16 @@ extension SummaryContainerViewController{
             NotificationCenter.default.post(name: .logout, object: nil);
         }
     }
+    @objc func pullToRefresh(){
+        fetchData();
+    }
 }
 extension SummaryContainerViewController{
+    private func setupRefreshControl(){
+        refreshControl.tintColor = appColor;
+        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged);
+        table.refreshControl = refreshControl;
+    }
     private func setupLocation(){
         locationManager.delegate = self;
         locationManager.requestWhenInUseAuthorization();
@@ -148,7 +157,7 @@ extension SummaryContainerViewController{
     private func fetchData() {
         let group = DispatchGroup();
         group.enter();
-        fetchProfile(forUserId: "1") { result in
+        fetchProfile(forUserId: String(Int.random(in: 1..<4))) { result in
             switch result {
             case .success(let profile):
                 DispatchQueue.main.async {
@@ -160,7 +169,7 @@ extension SummaryContainerViewController{
             group.leave();
         }
         group.enter();
-        fetchAccounts(forUserId: "1") { result in
+        fetchAccounts(forUserId: String(Int.random(in: 1..<4))) { result in
             switch result {
             case .success(let accounts):
                 DispatchQueue.main.async {
@@ -174,6 +183,7 @@ extension SummaryContainerViewController{
       
         group.notify(queue: .main) {
             self.table.reloadData();
+            self.table.refreshControl?.endRefreshing();
         }
     }
 }
