@@ -26,6 +26,7 @@ class SummaryContainerViewController: UIViewController {
         button.tintColor = .label;
         return button;
     }();
+    var isLoaded = false;
     override func viewDidLoad() {
         super.viewDidLoad();
         brain.delegate = self;
@@ -34,6 +35,7 @@ class SummaryContainerViewController: UIViewController {
         setup();
         setupRefreshControl();
         setupLocation();
+        setupSkeletons();
         fetchData();
     }
     
@@ -59,10 +61,21 @@ extension SummaryContainerViewController{
         }
     }
     @objc func pullToRefresh(){
+        reset();
+        setupSkeletons();
+        table.reloadData();
         fetchData();
+    }
+    private func reset(){
+        accounts = [];
+        isLoaded = false;
     }
 }
 extension SummaryContainerViewController{
+    private func setupSkeletons(){
+        let row = SummaryModel.makeSkeleton();
+        accounts = Array(repeating: row, count: 10);
+    }
     private func setupRefreshControl(){
         refreshControl.tintColor = appColor;
         refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged);
@@ -80,6 +93,7 @@ extension SummaryContainerViewController{
         table.delegate = self;
         table.dataSource = self;
         table.register(SummaryTableCell.self, forCellReuseIdentifier: SummaryTableCell.reuseId);
+        table.register(SkeletonCell.self, forCellReuseIdentifier: SkeletonCell.reuseID);
         table.allowsSelection = false;
         if #available(iOS 15.0, *) {
             table.sectionHeaderTopPadding = .zero
@@ -107,11 +121,17 @@ extension SummaryContainerViewController:UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableCell.reuseId, for: indexPath) as! SummaryTableCell;
-        guard !accounts.isEmpty else {return UITableViewCell()};
         let item = accounts[indexPath.row];
-        cell.configure(with: item);
-        return cell;
+        if isLoaded{
+            let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableCell.reuseId, for: indexPath) as! SummaryTableCell;
+            cell.configure(with: item);
+            return cell;
+      
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: SkeletonCell.reuseID, for: indexPath) as! SkeletonCell;
+            cell.configure(with: item);
+            return cell;
+        }
     }
 }
 
@@ -182,8 +202,9 @@ extension SummaryContainerViewController{
         }
       
         group.notify(queue: .main) {
-            self.table.reloadData();
             self.table.refreshControl?.endRefreshing();
+            self.isLoaded = true;
+            self.table.reloadData();
         }
     }
 }

@@ -18,6 +18,9 @@ struct SummaryModel: Codable {
     let amount: Decimal
     
     var balanceAsAttributedString: NSAttributedString {
-            return CurrencyFormatter().makeAttributedCurrency(amount)
-        }
+        return CurrencyFormatter().makeAttributedCurrency(amount)
+    }
+    static func makeSkeleton()->SummaryModel {
+        return SummaryModel(type: .Banking, name: "Blank name", amount: 0.0);
+    }
 }

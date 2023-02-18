@@ -24,8 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         loginViewController.delegate = self;
         onBoardingContainerViewController.delegate = self;
 //                window?.rootViewController = onBoardingContainerViewController;
-//        window?.rootViewController = mainViewController;
-        window?.rootViewController = loginViewController;
+        window?.rootViewController = mainViewController;
+//        window?.rootViewController = loginViewController;
         window?.makeKeyAndVisible();
         LocalState.hasOnboarded = false;
         registerForNotification();
