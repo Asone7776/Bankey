@@ -143,10 +143,10 @@ extension SummaryTableCell{
 
 extension SummaryTableCell{
     func configure(with vm: SummaryModel){
-        typeLabel.text = vm.accountType.rawValue;
-        nameLabel.text = vm.accountName;
+        typeLabel.text = vm.type.rawValue;
+        nameLabel.text = vm.name;
         amountLabel.attributedText = vm.balanceAsAttributedString;
-        switch vm.accountType{
+        switch vm.type{
             case .Banking:
             underlineView.backgroundColor = appColor;
             currentBalanceLabel.text = "Current balance";

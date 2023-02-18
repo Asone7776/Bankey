@@ -7,17 +7,17 @@
 
 import Foundation
 
-enum AccountType: String{
+enum AccountType: String, Codable {
     case Banking
     case CreditCard
     case Investment
 }
-struct SummaryModel {
-    let accountType: AccountType
-    let accountName: String
-    let balance: Decimal
+struct SummaryModel: Codable {
+    let type: AccountType
+    let name: String
+    let amount: Decimal
     
     var balanceAsAttributedString: NSAttributedString {
-            return CurrencyFormatter().makeAttributedCurrency(balance)
+            return CurrencyFormatter().makeAttributedCurrency(amount)
         }
 }

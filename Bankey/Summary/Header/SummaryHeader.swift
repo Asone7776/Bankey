@@ -9,8 +9,6 @@ import UIKit
 
 class SummaryHeader: UIView {
     
-    
-    
     let horizontalStack: UIStackView = {
         let stack = UIStackView();
         stack.axis = .horizontal;

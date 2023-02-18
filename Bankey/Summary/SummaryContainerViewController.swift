@@ -13,7 +13,7 @@ class SummaryContainerViewController: UIViewController {
     var summaryHeader = SummaryHeader();
     var brain = WeatherBrain();
     let locationManager = CLLocationManager();
-    var accountCellViewModels = [SummaryModel]();
+    var accounts = [SummaryModel]();
     let table: UITableView = {
         let table = UITableView(frame: UIScreen.main.bounds, style: .grouped);
         table.translatesAutoresizingMaskIntoConstraints = false;
@@ -31,7 +31,7 @@ class SummaryContainerViewController: UIViewController {
         layout();
         setup();
         setupLocation();
-        fetchData();
+//        fetchData();
         brain.delegate = self;
         confirm.delegate = self;
         fetchDataAndLoadViews();
@@ -91,43 +91,16 @@ extension SummaryContainerViewController{
             table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ]);
     }
-    private func fetchData() {
-        let savings = SummaryModel(accountType: .Banking,
-                                                            accountName: "Basic Savings",
-                                                        balance: 929466.23)
-        let chequing = SummaryModel(accountType: .Banking,
-                                                    accountName: "No-Fee All-In Chequing",
-                                                    balance: 17562.44)
-        let visa = SummaryModel(accountType: .CreditCard,
-                                                       accountName: "Visa Avion Card",
-                                                       balance: 412.83)
-        let masterCard = SummaryModel(accountType: .CreditCard,
-                                                       accountName: "Student Mastercard",
-                                                       balance: 50.83)
-        let investment1 = SummaryModel(accountType: .Investment,
-                                                       accountName: "Tax-Free Saver",
-                                                       balance: 2000.00)
-        let investment2 = SummaryModel(accountType: .Investment,
-                                                       accountName: "Growth Fund",
-                                                       balance: 15000.00)
-
-        accountCellViewModels.append(savings)
-        accountCellViewModels.append(chequing)
-        accountCellViewModels.append(visa)
-        accountCellViewModels.append(masterCard)
-        accountCellViewModels.append(investment1)
-        accountCellViewModels.append(investment2)
-    }
 }
 extension SummaryContainerViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return accountCellViewModels.count;
+        return accounts.count;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableCell.reuseId, for: indexPath) as! SummaryTableCell;
-        guard !accountCellViewModels.isEmpty else {return UITableViewCell()};
-        let item = accountCellViewModels[indexPath.row];
+        guard !accounts.isEmpty else {return UITableViewCell()};
+        let item = accounts[indexPath.row];
         cell.configure(with: item);
         return cell;
     }
@@ -183,6 +156,17 @@ extension SummaryContainerViewController{
                 print(error.localizedDescription)
             }
         }
+        fetchAccounts(forUserId: "1") { result in
+                 switch result {
+                 case .success(let accounts):
+                     DispatchQueue.main.async {
+                         self.accounts = accounts
+                         self.table.reloadData()
+                     }
+                 case .failure(let error):
+                     print(error.localizedDescription)
+                 }
+             }
     }
 }
 
