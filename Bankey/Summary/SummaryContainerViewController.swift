@@ -27,16 +27,14 @@ class SummaryContainerViewController: UIViewController {
     }();
     override func viewDidLoad() {
         super.viewDidLoad();
-        setupNavigationBar();
+        brain.delegate = self;
+        confirm.delegate = self;
         layout();
         setup();
         setupLocation();
-//        fetchData();
-        brain.delegate = self;
-        confirm.delegate = self;
-        fetchDataAndLoadViews();
+        fetchData();
     }
- 
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         
@@ -67,6 +65,7 @@ extension SummaryContainerViewController{
         locationManager.requestLocation();
     }
     private func setup(){
+        setupNavigationBar();
         table.backgroundColor = appColor;
         table.showsVerticalScrollIndicator = false;
         table.delegate = self;
@@ -91,6 +90,7 @@ extension SummaryContainerViewController{
             table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ]);
     }
+    
 }
 extension SummaryContainerViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -145,7 +145,9 @@ extension SummaryContainerViewController:CanShowWeather{
 }
 //MARK: Get profile
 extension SummaryContainerViewController{
-    private func fetchDataAndLoadViews() {
+    private func fetchData() {
+        let group = DispatchGroup();
+        group.enter();
         fetchProfile(forUserId: "1") { result in
             switch result {
             case .success(let profile):
@@ -155,18 +157,24 @@ extension SummaryContainerViewController{
             case .failure(let error):
                 print(error.localizedDescription)
             }
+            group.leave();
         }
+        group.enter();
         fetchAccounts(forUserId: "1") { result in
-                 switch result {
-                 case .success(let accounts):
-                     DispatchQueue.main.async {
-                         self.accounts = accounts
-                         self.table.reloadData()
-                     }
-                 case .failure(let error):
-                     print(error.localizedDescription)
-                 }
-             }
+            switch result {
+            case .success(let accounts):
+                DispatchQueue.main.async {
+                    self.accounts = accounts
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            group.leave();
+        }
+      
+        group.notify(queue: .main) {
+            self.table.reloadData();
+        }
     }
 }
 
@@ -176,6 +184,6 @@ extension SummaryContainerViewController:ConfirmAlertDelegate{
     }
 }
 
-    
-        
-    
+
+
+
