@@ -25,8 +25,8 @@ class LoadedButton: UIButton{
     }
     private func setupView(){
         activitiIndicator.hidesWhenStopped = true;
-        activitiIndicator.color = .black
-        activitiIndicator.style = .medium
+        activitiIndicator.color = .label;
+        activitiIndicator.style = .medium;
         activitiIndicator.translatesAutoresizingMaskIntoConstraints = false;
         addSubview(activitiIndicator);
         NSLayoutConstraint.activate([

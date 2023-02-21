@@ -13,7 +13,9 @@ protocol LogoutDelegate: AnyObject{
 
 protocol LoginViewControllerDelegate: AnyObject{
     func didLogin()
+    func didResetPassword()
 }
+
 class LoginViewController: UIViewController {
     
     let loginView = LoginView();
@@ -68,6 +70,17 @@ class LoginViewController: UIViewController {
         button.addTarget(self, action: #selector(signInPressed), for: .touchUpInside);
         return button;
     }();
+    
+    lazy var resetPasswordButton: UIButton = {
+        let button = UIButton();
+        button.configuration = .plain();
+        button.layer.cornerRadius = 5;
+        button.clipsToBounds = true;
+        button.translatesAutoresizingMaskIntoConstraints = false;
+        button.setTitle("Forgot password?", for: .normal);
+        button.addTarget(self, action: #selector(resetPasswordPressed), for: .touchUpInside);
+        return button;
+    }();
     //    Animation
     let leadingEdgeOnScreen: CGFloat = 16;
     let leadingEdgeOffScreen: CGFloat = -1000;
@@ -88,6 +101,9 @@ class LoginViewController: UIViewController {
 }
 //MARK: Actions
 extension LoginViewController{
+    @objc func resetPasswordPressed(){
+        delegate?.didResetPassword();
+    }
     @objc func signInPressed() {
         errorLabel.isHidden = true;
         signInButton.isLoading = true
@@ -120,7 +136,7 @@ extension LoginViewController{
 }
 //MARK: Style and Layout
 extension LoginViewController{
-    
+   
     func style(){
         
     }
@@ -131,6 +147,7 @@ extension LoginViewController{
         view.addSubview(loginView);
         view.addSubview(signInButton);
         view.addSubview(errorLabel);
+        view.addSubview(resetPasswordButton);
         NSLayoutConstraint.activate([
             loginView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             loginView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 1),
@@ -150,6 +167,9 @@ extension LoginViewController{
             titleLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
             subTitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 3),
             titleLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor),
+            resetPasswordButton.topAnchor.constraint(equalToSystemSpacingBelow: signInButton.bottomAnchor, multiplier: 1),
+            resetPasswordButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 1),
+            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: resetPasswordButton.trailingAnchor, multiplier: 1)
         ]);
         //animate constants
         subTitleLeadingAnchor =  subTitleLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor,constant: leadingEdgeOffScreen);

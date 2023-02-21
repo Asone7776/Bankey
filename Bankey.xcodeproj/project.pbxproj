@@ -20,11 +20,15 @@
 		CE0A56182992F628000F24A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE0A56172992F628000F24A0 /* Assets.xcassets */; };
 		CE0A561B2992F628000F24A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE0A56192992F628000F24A0 /* LaunchScreen.storyboard */; };
 		CE4A91F129996DFE00939BCB /* SummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A91F029996DFE00939BCB /* SummaryModel.swift */; };
+		CE65DB7E29A5196200265671 /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65DB7D29A5196200265671 /* ResetViewController.swift */; };
+		CE65DB8029A51F2D00265671 /* PasswordTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65DB7F29A51F2D00265671 /* PasswordTextFieldView.swift */; };
 		CE7F2FD42996C2CA00A64776 /* SummaryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F2FD32996C2CA00A64776 /* SummaryHeader.swift */; };
 		CE7F2FD72996EA8500A64776 /* WeatherBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F2FD62996EA8500A64776 /* WeatherBrain.swift */; };
 		CE7F2FD92996EAD300A64776 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F2FD82996EAD300A64776 /* Weather.swift */; };
 		CE7F2FDB2996EAF200A64776 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F2FDA2996EAF200A64776 /* WeatherModel.swift */; };
 		CE9187F82992F9E700B4F94E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9187F72992F9E700B4F94E /* LoginView.swift */; };
+		CE99CC3729A529FE002302CC /* TextFieldWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE99CC3629A529FE002302CC /* TextFieldWithPadding.swift */; };
+		CE99CC3A29A555F5002302CC /* PasswordCriteriaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE99CC3929A555F5002302CC /* PasswordCriteriaView.swift */; };
 		CE9A6A87299428EB007179C9 /* LoadedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9A6A86299428EB007179C9 /* LoadedButton.swift */; };
 		CEA7F93329A14D7F00070E94 /* SkeletonLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7F93229A14D7F00070E94 /* SkeletonLoadable.swift */; };
 		CEA7F93529A14E8A00070E94 /* SkeletonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA7F93429A14E8A00070E94 /* SkeletonCell.swift */; };
@@ -52,11 +56,15 @@
 		CE0A561A2992F628000F24A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE0A561C2992F628000F24A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE4A91F029996DFE00939BCB /* SummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryModel.swift; sourceTree = "<group>"; };
+		CE65DB7D29A5196200265671 /* ResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetViewController.swift; sourceTree = "<group>"; };
+		CE65DB7F29A51F2D00265671 /* PasswordTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextFieldView.swift; sourceTree = "<group>"; };
 		CE7F2FD32996C2CA00A64776 /* SummaryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryHeader.swift; sourceTree = "<group>"; };
 		CE7F2FD62996EA8500A64776 /* WeatherBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBrain.swift; sourceTree = "<group>"; };
 		CE7F2FD82996EAD300A64776 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		CE7F2FDA2996EAF200A64776 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		CE9187F72992F9E700B4F94E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		CE99CC3629A529FE002302CC /* TextFieldWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithPadding.swift; sourceTree = "<group>"; };
+		CE99CC3929A555F5002302CC /* PasswordCriteriaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordCriteriaView.swift; sourceTree = "<group>"; };
 		CE9A6A86299428EB007179C9 /* LoadedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadedButton.swift; sourceTree = "<group>"; };
 		CEA7F93229A14D7F00070E94 /* SkeletonLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoadable.swift; sourceTree = "<group>"; };
 		CEA7F93429A14E8A00070E94 /* SkeletonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonCell.swift; sourceTree = "<group>"; };
@@ -118,6 +126,7 @@
 		CE0A560D2992F628000F24A0 /* Bankey */ = {
 			isa = PBXGroup;
 			children = (
+				CE65DB7C29A5194900265671 /* PasswordReset */,
 				CE7F2FD52996EA5B00A64776 /* Model */,
 				1AF2AE7A29966E0A00DE8010 /* Summary */,
 				CEB3D97B299591E3001F941F /* Utils */,
@@ -168,6 +177,16 @@
 			path = Weather;
 			sourceTree = "<group>";
 		};
+		CE65DB7C29A5194900265671 /* PasswordReset */ = {
+			isa = PBXGroup;
+			children = (
+				CE99CC3829A555E5002302CC /* PasswordStatusView */,
+				CE65DB7D29A5196200265671 /* ResetViewController.swift */,
+				CE65DB7F29A51F2D00265671 /* PasswordTextFieldView.swift */,
+			);
+			path = PasswordReset;
+			sourceTree = "<group>";
+		};
 		CE7F2FD52996EA5B00A64776 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,10 +215,19 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		CE99CC3829A555E5002302CC /* PasswordStatusView */ = {
+			isa = PBXGroup;
+			children = (
+				CE99CC3929A555F5002302CC /* PasswordCriteriaView.swift */,
+			);
+			path = PasswordStatusView;
+			sourceTree = "<group>";
+		};
 		CE9A6A85299428DB007179C9 /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
 				CE9A6A86299428EB007179C9 /* LoadedButton.swift */,
+				CE99CC3629A529FE002302CC /* TextFieldWithPadding.swift */,
 			);
 			path = UIElements;
 			sourceTree = "<group>";
@@ -288,8 +316,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE65DB7E29A5196200265671 /* ResetViewController.swift in Sources */,
 				1AF2AE7729964FFE00DE8010 /* UIVIewController+Utils.swift in Sources */,
 				1AF2AE7E2996726100DE8010 /* SummaryTableCell.swift in Sources */,
+				CE99CC3729A529FE002302CC /* TextFieldWithPadding.swift in Sources */,
 				CEA7F93329A14D7F00070E94 /* SkeletonLoadable.swift in Sources */,
 				1AF2AE7C29966EFF00DE8010 /* SummaryContainerViewController.swift in Sources */,
 				CE7F2FD42996C2CA00A64776 /* SummaryHeader.swift in Sources */,
@@ -298,6 +328,7 @@
 				1AF2AE79299650C700DE8010 /* MainViewController.swift in Sources */,
 				CE0A56132992F628000F24A0 /* LoginViewController.swift in Sources */,
 				CEB3D97D299591F0001F941F /* LocalState.swift in Sources */,
+				CE65DB8029A51F2D00265671 /* PasswordTextFieldView.swift in Sources */,
 				CEC215FE299AED1400975445 /* UITextFieldSecureToggle.swift in Sources */,
 				CE0A560F2992F628000F24A0 /* AppDelegate.swift in Sources */,
 				CEC215F8299A9D1900975445 /* CurrencyFormatter.swift in Sources */,
@@ -311,6 +342,7 @@
 				CE7F2FD72996EA8500A64776 /* WeatherBrain.swift in Sources */,
 				CE7F2FDB2996EAF200A64776 /* WeatherModel.swift in Sources */,
 				CE9A6A87299428EB007179C9 /* LoadedButton.swift in Sources */,
+				CE99CC3A29A555F5002302CC /* PasswordCriteriaView.swift in Sources */,
 				CEC215FA299ACE2800975445 /* Alerts.swift in Sources */,
 				CEC215FC299AE8B500975445 /* NSNotificationName.swift in Sources */,
 			);

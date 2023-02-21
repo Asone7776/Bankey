@@ -1,6 +1,6 @@
 import UIKit
 
-let passwordToggleButton = UIButton(type: .custom)
+var passwordToggleButton = UIButton(type: .custom)
 
 extension UITextField {
     

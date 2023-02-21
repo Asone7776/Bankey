@@ -16,6 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var loginViewController = LoginViewController();
     var onBoardingContainerViewController = OnboardingContainerViewController(nibName: nil, bundle: nil);
     var mainViewController = MainViewController();
+    var resetPasswordViewController = ResetViewController();
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
@@ -23,9 +24,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .systemBackground
         loginViewController.delegate = self;
         onBoardingContainerViewController.delegate = self;
+        resetPasswordViewController.delegate = self;
 //                window?.rootViewController = onBoardingContainerViewController;
-        window?.rootViewController = mainViewController;
-//        window?.rootViewController = loginViewController;
+//        window?.rootViewController = mainViewController;
+        window?.rootViewController = resetPasswordViewController;
         window?.makeKeyAndVisible();
         LocalState.hasOnboarded = false;
         registerForNotification();
@@ -38,6 +40,9 @@ extension SceneDelegate:LoginViewControllerDelegate{
         }else{
             setRootViewController(onBoardingContainerViewController);
         }
+    }
+    func didResetPassword() {
+        setRootViewController(resetPasswordViewController);
     }
 }
 
@@ -74,5 +79,11 @@ extension SceneDelegate {
                           options: .transitionCrossDissolve,
                           animations: nil,
                           completion: nil)
+    }
+}
+
+extension SceneDelegate:ResetViewControllerDelegate{
+    func goToLogin() {
+        setRootViewController(loginViewController);
     }
 }

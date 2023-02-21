@@ -11,6 +11,11 @@ protocol ConfirmAlertDelegate{
     func showConfirmDialog(alert: UIAlertController)
 }
 
+
+protocol ErrorAlertDelegate{
+    func showErrorDialog(alert: UIAlertController)
+}
+
 struct ConfirmAlert{
     var delegate: ConfirmAlertDelegate?
     func presentAlert(title:String, message:String?, alertAction: @escaping () -> Void){
@@ -22,5 +27,15 @@ struct ConfirmAlert{
         alert.addAction(confirmAction);
         alert.addAction(cancelAction);
         delegate?.showConfirmDialog(alert: alert);
+    }
+}
+
+struct ErrorAlert{
+    var delegate: ErrorAlertDelegate?
+    func presentAlert(title:String, message:String?){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert);
+        let cancelAction = UIAlertAction(title: "Close", style: .cancel);
+        alert.addAction(cancelAction);
+        delegate?.showErrorDialog(alert: alert);
     }
 }

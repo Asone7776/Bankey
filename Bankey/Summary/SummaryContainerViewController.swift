@@ -10,6 +10,7 @@ import CoreLocation
 
 class SummaryContainerViewController: UIViewController {
     var confirm = ConfirmAlert();
+    var errorAlert = ErrorAlert();
     var summaryHeader = SummaryHeader();
     var brain = WeatherBrain();
     let locationManager = CLLocationManager();
@@ -31,6 +32,7 @@ class SummaryContainerViewController: UIViewController {
         super.viewDidLoad();
         brain.delegate = self;
         confirm.delegate = self;
+        errorAlert.delegate = self;
         layout();
         setup();
         setupRefreshControl();
@@ -126,7 +128,7 @@ extension SummaryContainerViewController:UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: SummaryTableCell.reuseId, for: indexPath) as! SummaryTableCell;
             cell.configure(with: item);
             return cell;
-      
+            
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: SkeletonCell.reuseID, for: indexPath) as! SkeletonCell;
             cell.configure(with: item);
@@ -184,7 +186,7 @@ extension SummaryContainerViewController{
                     self.summaryHeader.greetingsLabel.text = profile.greeting;
                 }
             case .failure(let error):
-                print(error.localizedDescription)
+                self.errorAlert.presentAlert(title: "Error", message: error.localizedDescription);
             }
             group.leave();
         }
@@ -196,11 +198,21 @@ extension SummaryContainerViewController{
                     self.accounts = accounts
                 }
             case .failure(let error):
-                print(error.localizedDescription)
+                var title:String
+                var message:String
+                switch error{
+                case .serverError:
+                    title = "Server Error"
+                    message = "Ensure you are connected to the internet. Please try again."
+                case .decodingError:
+                    title = "Decoding Error"
+                    message = "We could not process your request. Please try again."
+                }
+                self.errorAlert.presentAlert(title: title, message: message);
             }
             group.leave();
         }
-      
+        
         group.notify(queue: .main) {
             self.table.refreshControl?.endRefreshing();
             self.isLoaded = true;
@@ -214,7 +226,11 @@ extension SummaryContainerViewController:ConfirmAlertDelegate{
         present(alert,animated: true);
     }
 }
-
+extension SummaryContainerViewController:ErrorAlertDelegate{
+    func showErrorDialog(alert: UIAlertController) {
+        present(alert,animated: true);
+    }
+}
 
 
 
