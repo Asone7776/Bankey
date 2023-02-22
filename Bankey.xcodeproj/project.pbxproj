@@ -38,6 +38,7 @@
 		CEC215FA299ACE2800975445 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC215F9299ACE2800975445 /* Alerts.swift */; };
 		CEC215FC299AE8B500975445 /* NSNotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC215FB299AE8B500975445 /* NSNotificationName.swift */; };
 		CEC215FE299AED1400975445 /* UITextFieldSecureToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC215FD299AED1400975445 /* UITextFieldSecureToggle.swift */; };
+		CECFD4F729A69C740083393B /* PasswordStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD4F629A69C740083393B /* PasswordStatusView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		CEC215F9299ACE2800975445 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		CEC215FB299AE8B500975445 /* NSNotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotificationName.swift; sourceTree = "<group>"; };
 		CEC215FD299AED1400975445 /* UITextFieldSecureToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldSecureToggle.swift; sourceTree = "<group>"; };
+		CECFD4F629A69C740083393B /* PasswordStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordStatusView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				CE99CC3929A555F5002302CC /* PasswordCriteriaView.swift */,
+				CECFD4F629A69C740083393B /* PasswordStatusView.swift */,
 			);
 			path = PasswordStatusView;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				CE65DB7E29A5196200265671 /* ResetViewController.swift in Sources */,
 				1AF2AE7729964FFE00DE8010 /* UIVIewController+Utils.swift in Sources */,
 				1AF2AE7E2996726100DE8010 /* SummaryTableCell.swift in Sources */,
+				CECFD4F729A69C740083393B /* PasswordStatusView.swift in Sources */,
 				CE99CC3729A529FE002302CC /* TextFieldWithPadding.swift in Sources */,
 				CEA7F93329A14D7F00070E94 /* SkeletonLoadable.swift in Sources */,
 				1AF2AE7C29966EFF00DE8010 /* SummaryContainerViewController.swift in Sources */,

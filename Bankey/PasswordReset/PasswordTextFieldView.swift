@@ -65,18 +65,18 @@ extension PasswordTextFieldView {
         addSubview(divider);
         addSubview(errorLabel);
         NSLayoutConstraint.activate([
-            passwordTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
+            passwordTextField.leadingAnchor.constraint(equalTo: leadingAnchor),
             passwordTextField.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: passwordTextField.trailingAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor),
             
-            divider.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
+            divider.leadingAnchor.constraint(equalTo: leadingAnchor),
             divider.topAnchor.constraint(equalToSystemSpacingBelow: passwordTextField.bottomAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: divider.trailingAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalTo: divider.trailingAnchor),
             divider.heightAnchor.constraint(equalToConstant: 1),
             
-            errorLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 1),
+            errorLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             errorLabel.topAnchor.constraint(equalToSystemSpacingBelow: divider.bottomAnchor, multiplier: 0.5),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: errorLabel.trailingAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalTo: errorLabel.trailingAnchor)
         ]);
     }
 }
