@@ -13,6 +13,8 @@ protocol ResetViewControllerDelegate{
 
 
 class ResetViewController: UIViewController {
+ 
+    
     var verticalStack: UIStackView = {
         let stack = UIStackView();
         stack.spacing = 4;
@@ -34,10 +36,9 @@ class ResetViewController: UIViewController {
         return button;
     }();
     
-    let passwordTextField = PasswordTextFieldView(placeholder: "New password");
-    let confirmTextField = PasswordTextFieldView(placeholder: "Repeat new password");
+    let passwordTextField = PasswordTextField(placeholder: "New password");
+    let confirmTextField = PasswordTextField(placeholder: "Repeat new password");
     let passwordStatusView = PasswordStatusView();
-//    let criteria = PasswordCriteriaView(text: "uppercase letter (A-Z)");
     var delegate:ResetViewControllerDelegate?;
     lazy var backButton:UIButton = {
         let button = UIButton();
@@ -52,7 +53,7 @@ class ResetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground;
-//        criteria.isCriteriaMet = false;
+        passwordTextField.delegate = self;
         layout();
         setup();
     }
@@ -87,5 +88,14 @@ extension ResetViewController{
     }
     @objc private func backPressed(){
         delegate?.goToLogin();
+    }
+}
+extension ResetViewController: PasswordTextFieldViewDelegate{
+    func editingChanged(_ sender: PasswordTextField) {
+        if sender === passwordTextField{
+            if let safeText = sender.textField.text{
+                passwordStatusView.updateDisplay(safeText);
+            }
+        }
     }
 }

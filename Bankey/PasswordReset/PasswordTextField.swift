@@ -1,19 +1,26 @@
 
 import UIKit
 
-class PasswordTextFieldView: UIView {
+protocol PasswordTextFieldViewDelegate:AnyObject{
+    func editingChanged(_ sender: PasswordTextField)
+}
+
+
+class PasswordTextField: UIView {
+    weak var delegate:PasswordTextFieldViewDelegate?;
     let passwordToggleButton:UIButton = {
         let button = UIButton(type: .custom);
         return button;
     }();
     
-    lazy var passwordTextField: TextFieldWithPadding = {
+    lazy var textField: TextFieldWithPadding = {
         let textField = TextFieldWithPadding(frame: .zero, textPadding: UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10));
         textField.leftView = UIImageView(image: UIImage(systemName: "lock.fill"));
         textField.leftViewMode = .always;
         textField.translatesAutoresizingMaskIntoConstraints = false;
         textField.isSecureTextEntry = true;
         textField.delegate = self;
+        textField.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged);
         return textField;
     }();
     
@@ -21,7 +28,7 @@ class PasswordTextFieldView: UIView {
         let label = UILabel();
         label.font = .preferredFont(forTextStyle: .footnote);
         label.textColor = .systemRed;
-        label.isHidden = false;
+        label.isHidden = true;
         label.translatesAutoresizingMaskIntoConstraints = false;
         label.text = "Your password must meet the requirements below";
         label.numberOfLines = 0;
@@ -40,7 +47,7 @@ class PasswordTextFieldView: UIView {
     
     init(placeholder:String) {
         super.init(frame: .zero)
-        passwordTextField.placeholder = placeholder;
+        textField.placeholder = placeholder;
         style()
         layout()
         enablePasswordToggle();
@@ -55,22 +62,22 @@ class PasswordTextFieldView: UIView {
     
 }
 
-extension PasswordTextFieldView {
+extension PasswordTextField {
     func style() {
         translatesAutoresizingMaskIntoConstraints = false
     }
     
     func layout() {
-        addSubview(passwordTextField);
+        addSubview(textField);
         addSubview(divider);
         addSubview(errorLabel);
         NSLayoutConstraint.activate([
-            passwordTextField.leadingAnchor.constraint(equalTo: leadingAnchor),
-            passwordTextField.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
-            trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor),
+            textField.leadingAnchor.constraint(equalTo: leadingAnchor),
+            textField.topAnchor.constraint(equalToSystemSpacingBelow: topAnchor, multiplier: 1),
+            trailingAnchor.constraint(equalTo: textField.trailingAnchor),
             
             divider.leadingAnchor.constraint(equalTo: leadingAnchor),
-            divider.topAnchor.constraint(equalToSystemSpacingBelow: passwordTextField.bottomAnchor, multiplier: 1),
+            divider.topAnchor.constraint(equalToSystemSpacingBelow: textField.bottomAnchor, multiplier: 1),
             trailingAnchor.constraint(equalTo: divider.trailingAnchor),
             divider.heightAnchor.constraint(equalToConstant: 1),
             
@@ -80,9 +87,15 @@ extension PasswordTextFieldView {
         ]);
     }
 }
-extension PasswordTextFieldView: UITextFieldDelegate{
+//MARK: Actions
+extension PasswordTextField{
+    @objc private func textFieldEditingChanged(_ sender:UITextField){
+        delegate?.editingChanged(self);
+    }
+}
+extension PasswordTextField: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        passwordTextField.endEditing(true);
+        textField.endEditing(true);
         return true;
     }
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
@@ -97,18 +110,18 @@ extension PasswordTextFieldView: UITextFieldDelegate{
 
 
 //MARK: Enable password toggle
-extension PasswordTextFieldView {
+extension PasswordTextField {
     
     func enablePasswordToggle(){
         passwordToggleButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
         passwordToggleButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .selected)
         passwordToggleButton.addTarget(self, action: #selector(togglePasswordView), for: .touchUpInside)
-        passwordTextField.rightView = passwordToggleButton
-        passwordTextField.rightViewMode = .always
+        textField.rightView = passwordToggleButton
+        textField.rightViewMode = .always
     }
     
     @objc func togglePasswordView(_ sender: Any) {
-        passwordTextField.isSecureTextEntry.toggle()
+        textField.isSecureTextEntry.toggle()
         passwordToggleButton.isSelected.toggle()
     }
 }
