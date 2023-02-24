@@ -24,6 +24,7 @@
 		CE4A91F129996DFE00939BCB /* SummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4A91F029996DFE00939BCB /* SummaryModel.swift */; };
 		CE65DB7E29A5196200265671 /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65DB7D29A5196200265671 /* ResetViewController.swift */; };
 		CE65DB8029A51F2D00265671 /* PasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE65DB7F29A51F2D00265671 /* PasswordTextField.swift */; };
+		CE790D6129A94F1A0093B83B /* UIResponder+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE790D6029A94F1A0093B83B /* UIResponder+Utils.swift */; };
 		CE7F2FD42996C2CA00A64776 /* SummaryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F2FD32996C2CA00A64776 /* SummaryHeader.swift */; };
 		CE7F2FD72996EA8500A64776 /* WeatherBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F2FD62996EA8500A64776 /* WeatherBrain.swift */; };
 		CE7F2FD92996EAD300A64776 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7F2FD82996EAD300A64776 /* Weather.swift */; };
@@ -63,6 +64,7 @@
 		CE4A91F029996DFE00939BCB /* SummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryModel.swift; sourceTree = "<group>"; };
 		CE65DB7D29A5196200265671 /* ResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetViewController.swift; sourceTree = "<group>"; };
 		CE65DB7F29A51F2D00265671 /* PasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextField.swift; sourceTree = "<group>"; };
+		CE790D6029A94F1A0093B83B /* UIResponder+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Utils.swift"; sourceTree = "<group>"; };
 		CE7F2FD32996C2CA00A64776 /* SummaryHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryHeader.swift; sourceTree = "<group>"; };
 		CE7F2FD62996EA8500A64776 /* WeatherBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherBrain.swift; sourceTree = "<group>"; };
 		CE7F2FD82996EAD300A64776 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				CEC215F9299ACE2800975445 /* Alerts.swift */,
 				CEC215FB299AE8B500975445 /* NSNotificationName.swift */,
 				CEC215FD299AED1400975445 /* UITextFieldSecureToggle.swift */,
+				CE790D6029A94F1A0093B83B /* UIResponder+Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				CE7F2FDB2996EAF200A64776 /* WeatherModel.swift in Sources */,
 				CE9A6A87299428EB007179C9 /* LoadedButton.swift in Sources */,
 				CE99CC3A29A555F5002302CC /* PasswordCriteriaView.swift in Sources */,
+				CE790D6129A94F1A0093B83B /* UIResponder+Utils.swift in Sources */,
 				CEC215FA299ACE2800975445 /* Alerts.swift in Sources */,
 				CEC215FC299AE8B500975445 /* NSNotificationName.swift in Sources */,
 			);

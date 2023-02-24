@@ -13,7 +13,7 @@ protocol ResetViewControllerDelegate{
 
 
 class ResetViewController: UIViewController {
- 
+    
     typealias customValidation = PasswordTextField.CustomValidation?;
     var verticalStack: UIStackView = {
         let stack = UIStackView();
@@ -40,8 +40,8 @@ class ResetViewController: UIViewController {
     let confirmTextField = PasswordTextField(placeholder: "Repeat new password");
     let passwordStatusView = PasswordStatusView();
     var delegate:ResetViewControllerDelegate?;
-   
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground;
@@ -69,7 +69,7 @@ extension ResetViewController{
         setupKeyboardDismissGesture();
         setupNewPassword();
         setupConfirmPassword();
-
+        setupKeyboardHiding();
     }
     private func setupNewPassword(){
         let newPasswordValidation: customValidation = {text in
@@ -88,9 +88,9 @@ extension ResetViewController{
             }
             
             self.passwordStatusView.updateDisplay(text)
-                  if !self.passwordStatusView.validate(text) {
-                      return (false, "Your password must meet the requirements below")
-                  }
+            if !self.passwordStatusView.validate(text) {
+                return (false, "Your password must meet the requirements below")
+            }
             return (true,"");
         }
         
@@ -101,16 +101,20 @@ extension ResetViewController{
             guard let text = text, !text.isEmpty else {
                 return (false, "Enter your password.")
             }
-
+            
             guard text == self.passwordTextField.text else {
                 return (false, "Passwords do not match.")
             }
-
+            
             return (true, "")
         }
-
+        
         confirmTextField.customValidation = confirmPasswordValidation
         confirmTextField.delegate = self
+    }
+    private func setupKeyboardHiding(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
 //MARK: Actions
@@ -123,11 +127,27 @@ extension ResetViewController{
         view.endEditing(true);
     }
     @objc private func resetPressed(){
+        view.endEditing(true)
         
+        let isValidNewPassword = passwordTextField.validate()
+        let isValidConfirmPassword = confirmTextField.validate()
+        
+        if isValidNewPassword && isValidConfirmPassword {
+            showAlert(title: "Success", message: "You have successfully changed your password.")
+        }
     }
-    @objc private func backPressed(){
-        delegate?.goToLogin();
+    private func showAlert(title: String, message: String) {
+        let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default) {_ in 
+            self.delegate?.goToLogin();
+        }
+        alert.addAction(action)
+        
+        alert.title = title
+        alert.message = message
+        present(alert, animated: true, completion: nil)
     }
+
 }
 extension ResetViewController: PasswordTextFieldViewDelegate{
     func editingDidEnd(_ sender: PasswordTextField) {
@@ -145,5 +165,31 @@ extension ResetViewController: PasswordTextFieldViewDelegate{
                 passwordStatusView.updateDisplay(safeText);
             }
         }
+    }
+}
+
+
+// MARK: Keyboard
+extension ResetViewController {
+    @objc func keyboardWillShow(sender: NSNotification) {
+        guard let userInfo = sender.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+              let currentTextField = UIResponder.currentFirst() as? UITextField else { return }
+        
+        let keyboardTopY = keyboardFrame.cgRectValue.origin.y
+        let convertedTextFieldFrame = view.convert(currentTextField.frame, from: currentTextField.superview)
+        let textFieldBottomY = convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
+        
+        
+        if textFieldBottomY > keyboardTopY {
+            let textBoxY = convertedTextFieldFrame.origin.y
+            let newFrameY = (textBoxY - keyboardTopY / 2) * -1
+            view.frame.origin.y = newFrameY
+        }
+        
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        view.frame.origin.y = 0
     }
 }
