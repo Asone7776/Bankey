@@ -3,10 +3,14 @@ import UIKit
 
 protocol PasswordTextFieldViewDelegate:AnyObject{
     func editingChanged(_ sender: PasswordTextField)
+    func editingDidEnd(_ sender: PasswordTextField)
 }
 
 
 class PasswordTextField: UIView {
+//    Alias for function as variable
+    typealias CustomValidation = (_ textValue: String?) -> (Bool,String)?;
+    var customValidation:CustomValidation?;
     weak var delegate:PasswordTextFieldViewDelegate?;
     let passwordToggleButton:UIButton = {
         let button = UIButton(type: .custom);
@@ -21,6 +25,7 @@ class PasswordTextField: UIView {
         textField.isSecureTextEntry = true;
         textField.delegate = self;
         textField.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged);
+        
         return textField;
     }();
     
@@ -44,6 +49,15 @@ class PasswordTextField: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false;
         return view;
     }();
+    
+    var text: String? {
+        get{
+            return textField.text;
+        }
+        set{
+            self.textField.text = newValue;
+        }
+    }
     
     init(placeholder:String) {
         super.init(frame: .zero)
@@ -94,17 +108,20 @@ extension PasswordTextField{
     }
 }
 extension PasswordTextField: UITextFieldDelegate{
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate?.editingDidEnd(self);
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true);
         return true;
     }
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true;
-//        if textField.text != ""{
-//            return true;
-//        }else{
-//            return false;
-//        }
+        //        if textField.text != ""{
+        //            return true;
+        //        }else{
+        //            return false;
+        //        }
     }
 }
 
@@ -123,5 +140,28 @@ extension PasswordTextField {
     @objc func togglePasswordView(_ sender: Any) {
         textField.isSecureTextEntry.toggle()
         passwordToggleButton.isSelected.toggle()
+    }
+}
+
+extension PasswordTextField {
+    func validate() -> Bool {
+        if let customValidation = customValidation,
+            let customValidationResult = customValidation(text),
+            customValidationResult.0 == false {
+            showError(customValidationResult.1)
+            return false
+        }
+        clearError()
+        return true
+    }
+    
+    private func showError(_ errorMessage: String) {
+        errorLabel.isHidden = false
+        errorLabel.text = errorMessage
+    }
+
+    private func clearError() {
+        errorLabel.isHidden = true
+        errorLabel.text = ""
     }
 }

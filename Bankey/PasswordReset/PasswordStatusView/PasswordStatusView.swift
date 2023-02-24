@@ -95,4 +95,12 @@ extension PasswordStatusView {
             specialMet ? specialCharacterCriteriaView.isCriteriaMet = true : specialCharacterCriteriaView.reset();
         }
     }
+    func reset() {
+        lengthCriteriaView.reset()
+        uppercaseCriteriaView.reset()
+        lowerCaseCriteriaView.reset()
+        digitCriteriaView.reset()
+        specialCharacterCriteriaView.reset()
+    }
+
 }

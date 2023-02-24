@@ -14,7 +14,7 @@ protocol ResetViewControllerDelegate{
 
 class ResetViewController: UIViewController {
  
-    
+    typealias customValidation = PasswordTextField.CustomValidation?;
     var verticalStack: UIStackView = {
         let stack = UIStackView();
         stack.spacing = 4;
@@ -78,11 +78,29 @@ extension ResetViewController{
         ]);
     }
     private func setup(){
-        
+        setupKeyboardDismissGesture();
+        setupNewPassword();
+    }
+    private func setupNewPassword(){
+        let newPasswordValidation: customValidation = {text in
+            guard let text = text, !text.isEmpty else{
+                self.passwordStatusView.reset()
+                return (false,"Enter your password");
+            }
+            return (true,"");
+        }
+        passwordTextField.customValidation = newPasswordValidation;
     }
 }
 //MARK: Actions
 extension ResetViewController{
+    private func setupKeyboardDismissGesture(){
+        let dissmissKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(viewTapped));
+        view.addGestureRecognizer(dissmissKeyboardTap);
+    }
+    @objc private func viewTapped(){
+        view.endEditing(true);
+    }
     @objc private func resetPressed(){
         
     }
@@ -91,6 +109,12 @@ extension ResetViewController{
     }
 }
 extension ResetViewController: PasswordTextFieldViewDelegate{
+    func editingDidEnd(_ sender: PasswordTextField) {
+        if sender === passwordTextField{
+            _ = passwordTextField.validate()
+        }
+    }
+    
     func editingChanged(_ sender: PasswordTextField) {
         if sender === passwordTextField{
             if let safeText = sender.textField.text{
