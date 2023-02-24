@@ -40,15 +40,7 @@ class ResetViewController: UIViewController {
     let confirmTextField = PasswordTextField(placeholder: "Repeat new password");
     let passwordStatusView = PasswordStatusView();
     var delegate:ResetViewControllerDelegate?;
-    lazy var backButton:UIButton = {
-        let button = UIButton();
-        button.configuration = .filled();
-        button.setTitle("To Login", for: .normal);
-        button.translatesAutoresizingMaskIntoConstraints = false;
-        button.addTarget(self, action: #selector(backPressed), for: .touchUpInside);
-        return button
-    }();
-
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,16 +54,12 @@ class ResetViewController: UIViewController {
 
 extension ResetViewController{
     private func layout(){
-        view.addSubview(backButton);
-        
         verticalStack.addArrangedSubview(passwordTextField);
         verticalStack.addArrangedSubview(passwordStatusView);
         verticalStack.addArrangedSubview(confirmTextField);
         verticalStack.addArrangedSubview(actionButton);
         view.addSubview(verticalStack)
         NSLayoutConstraint.activate([
-            backButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 1),
-            backButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 1),
             verticalStack.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             verticalStack.leadingAnchor.constraint(equalToSystemSpacingAfter: view.safeAreaLayoutGuide.leadingAnchor, multiplier: 2),
             view.safeAreaLayoutGuide.trailingAnchor.constraint(equalToSystemSpacingAfter: verticalStack.trailingAnchor, multiplier: 2)
@@ -80,6 +68,8 @@ extension ResetViewController{
     private func setup(){
         setupKeyboardDismissGesture();
         setupNewPassword();
+        setupConfirmPassword();
+
     }
     private func setupNewPassword(){
         let newPasswordValidation: customValidation = {text in
@@ -87,9 +77,40 @@ extension ResetViewController{
                 self.passwordStatusView.reset()
                 return (false,"Enter your password");
             }
+            
+            // Valid characters
+            let validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,@:?!()$\\/#"
+            
+            let invalidSet = CharacterSet(charactersIn: validChars).inverted
+            guard text.rangeOfCharacter(from: invalidSet) == nil else {
+                self.passwordStatusView.reset()
+                return (false, "Enter valid special chars (.,@:?!()$\\/#) with no spaces")
+            }
+            
+            self.passwordStatusView.updateDisplay(text)
+                  if !self.passwordStatusView.validate(text) {
+                      return (false, "Your password must meet the requirements below")
+                  }
             return (true,"");
         }
+        
         passwordTextField.customValidation = newPasswordValidation;
+    }
+    private func setupConfirmPassword() {
+        let confirmPasswordValidation: customValidation = { text in
+            guard let text = text, !text.isEmpty else {
+                return (false, "Enter your password.")
+            }
+
+            guard text == self.passwordTextField.text else {
+                return (false, "Passwords do not match.")
+            }
+
+            return (true, "")
+        }
+
+        confirmTextField.customValidation = confirmPasswordValidation
+        confirmTextField.delegate = self
     }
 }
 //MARK: Actions
@@ -111,7 +132,10 @@ extension ResetViewController{
 extension ResetViewController: PasswordTextFieldViewDelegate{
     func editingDidEnd(_ sender: PasswordTextField) {
         if sender === passwordTextField{
+            passwordStatusView.shouldResetCriteria = false
             _ = passwordTextField.validate()
+        } else if sender == confirmTextField {
+            _ = confirmTextField.validate()
         }
     }
     
